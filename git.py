@@ -29,7 +29,7 @@ class git:
         currloc = os.getcwd()
         os.chdir(location)
         return [subprocess.check_output(['git','config',
-        '--get','remote.origin.url']),os.chdir(currloc)][0]
+        '--get','remote.origin.url']).replace('\n',''),os.chdir(currloc)][0]
     def init(self,location=False,bare=False,args=''):
         '''This command creates an empty Git repository - basically a .git
         directory with subdirectories for objects, refs/heads, refs/tags, and
