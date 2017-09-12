@@ -94,11 +94,13 @@ class git:
                 '         Use Personal access tokens when possible.\n'
                 '         https://github.com/blog/1509-personal-api-tokens')
             self.password = password
-    def push(self,url,bname='master',location=False,args=''):
+    def push(self,url=False,bname='master',location=False,args=''):
         '''Updates remote refs using local refs, while sending objects
         necessary to complete the given refs.'''
         if not location:
             location = self._getloc()
+        if not url:
+            url = self._geturl()
         currloc = os.getcwd()
         os.chdir(location)
         url = [url.split('://')[0]+'://',url.split('://')[-1].split('@')[0],
